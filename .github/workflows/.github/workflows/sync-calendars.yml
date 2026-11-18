@@ -1,0 +1,44 @@
+name: Sync Airbnb calendars
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+  push:
+    paths:
+      - direct-bookings.json
+
+permissions:
+  contents: write
+
+concurrency:
+  group: calendar-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Pull calendars
+        env:
+          AIRBNB_ICAL_APT: ${{ secrets.AIRBNB_ICAL_APT }}
+          AIRBNB_ICAL_TOWNSITE: ${{ secrets.AIRBNB_ICAL_TOWNSITE }}
+        run: node scripts/sync-calendars.mjs
+
+      - name: Save changes
+        run: |
+          if git diff --quiet -I '"updated"' -I '^DTSTAMP' -- availability.json direct/; then
+            echo "No booking changes."
+            exit 0
+          fi
+          git config user.name "calendar-bot"
+          git config user.email "calendar-bot@users.noreply.github.com"
+          git add availability.json direct/
+          git commit -m "Update availability"
+          git push
