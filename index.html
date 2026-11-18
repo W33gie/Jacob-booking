@@ -182,6 +182,77 @@ textarea{min-height:96px;resize:vertical}
 footer{padding:40px 0 110px;color:var(--muted);font-size:13px;text-align:center}
 footer .logo{display:block;font-size:22px;color:var(--ink);margin-bottom:6px}
 
+/* reviews dropdown */
+.stat-btn{background:none;border:0;border-right:1px solid var(--line);font:inherit;color:inherit;cursor:pointer;transition:background .2s}
+.stat-btn:hover{background:var(--chip)}
+.stat-btn span{display:inline-flex;align-items:center;gap:4px;color:var(--accent);font-weight:600}
+.chev{font-style:normal;display:inline-block;transition:transform .25s}
+.stat-btn[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.reviews{margin-top:14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:20px;animation:drop .3s ease}
+@keyframes drop{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.rev-top{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;margin:20px 0 6px}
+.rev-score b{display:block;font-family:Fraunces,serif;font-size:44px;font-weight:600;line-height:1}
+.rev-score span{font-size:13px;color:var(--muted)}
+.bars{display:grid;grid-template-columns:1fr 1fr;gap:8px 22px}
+.bar{display:grid;grid-template-columns:96px 1fr 30px;align-items:center;gap:8px;font-size:13px}
+.bar span:first-child{color:var(--ink-2)}
+.bar .track{height:5px;border-radius:3px;background:var(--chip);overflow:hidden}
+.bar .track i{display:block;height:100%;background:var(--deep-2);border-radius:3px}
+:root[data-theme="dark"] .bar .track i{background:var(--sea)}
+.bar b{font-weight:600;text-align:right}
+.rev-list{display:grid;gap:12px;margin-top:20px}
+.rev{border-top:1px solid var(--line);padding-top:14px}
+.rev-h{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.av{width:34px;height:34px;border-radius:50%;background:var(--deep-2);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;flex:none}
+.rev-h b{display:block;font-size:14.5px}
+.rev-h small{color:var(--muted);font-size:12.5px}
+.rev p{font-size:14.5px;color:var(--ink-2)}
+.rev-more{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.rev-empty{font-size:14px;color:var(--muted);margin-top:16px}
+@media (max-width:620px){
+  .stat-btn{border-right:0}
+  .rev-top{grid-template-columns:1fr;gap:14px}
+  .bars{grid-template-columns:1fr}
+  .reviews{padding:16px}
+}
+
+/* booking calendar */
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--chip);padding:5px;border-radius:14px}
+.seg button{border:0;background:transparent;padding:11px 8px;border-radius:10px;font:inherit;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;line-height:1.25}
+.seg button.on{background:var(--surface);color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.cal-head button{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:18px;cursor:pointer}
+.cal-head button:disabled{opacity:.3;cursor:default}
+.cal-months{display:grid;gap:22px;grid-template-columns:1fr}
+.cal-months.two{grid-template-columns:1fr 1fr}
+.cal-title{font-family:Fraunces,serif;font-weight:600;font-size:17px;text-align:center;margin-bottom:8px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.cal-grid .dow{font-size:11px;text-align:center;color:var(--muted);font-weight:600;padding:4px 0}
+.day{aspect-ratio:1;border:0;background:transparent;border-radius:10px;font:inherit;font-size:14px;color:var(--ink);cursor:pointer;position:relative;display:flex;align-items:center;justify-content:center;padding:0}
+.day:hover:not(:disabled){background:var(--chip)}
+.day:disabled{color:var(--muted);opacity:.35;cursor:default}
+.day.booked{color:var(--muted);opacity:.55;text-decoration:line-through;cursor:default}
+.day.booked:not(.co-ok):hover{background:transparent}
+.day.in-range{background:color-mix(in srgb,var(--sea) 16%,transparent);border-radius:0}
+.day.sel{background:var(--deep-2);color:#fff;opacity:1;text-decoration:none}
+:root[data-theme="dark"] .day.sel{background:var(--sea);color:#0c171a}
+.day.today::after{content:"";position:absolute;bottom:5px;width:4px;height:4px;border-radius:50%;background:var(--rust)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.dates{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--field-line);border-radius:12px;overflow:hidden}
+.dates div{padding:10px 14px}
+.dates div+div{border-left:1px solid var(--field-line)}
+.dates small{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.dates b{font-size:15px;font-weight:600}
+.price{border-top:1px dashed var(--line);padding-top:12px;font-size:14.5px;display:grid;gap:6px}
+.price div{display:flex;justify-content:space-between;gap:10px}
+.price .tot{font-weight:600;font-size:16px;border-top:1px solid var(--line);padding-top:8px;margin-top:2px}
+.price p{color:var(--muted);font-size:13px}
+.price .tot:first-child{border-top:0;padding-top:0;margin-top:0}
+.sync{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:7px;margin-top:22px}
+.sync i{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:none}
+.sync.live i{background:#3aa76d;box-shadow:0 0 0 3px color-mix(in srgb,#3aa76d 25%,transparent)}
+
 /* mobile sticky CTA */
 .sticky{position:fixed;left:12px;right:12px;bottom:12px;z-index:20;display:none;transform:translateY(140%);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
 .sticky.show{transform:none}
@@ -259,9 +330,10 @@ footer .logo{display:block;font-size:22px;color:var(--ink);margin-bottom:6px}
     <div class="hero-inner">
       <div class="eyebrow">Corner Brook · Newfoundland</div>
       <h1>Your home base on the <em>west coast.</em></h1>
-      <p class="lead">Two places in Corner Brook, both with great reviews: a cozy apartment near the hospital and a four-bedroom heritage house in Townsite. Pick a place and book it on Airbnb.</p>
+      <p class="lead">Two places in Corner Brook, both with great reviews: a cozy apartment near the hospital and a four-bedroom heritage house in Townsite. Book direct with Jacob and skip the Airbnb fees.</p>
       <div class="cta-row">
-        <a href="#stays" class="btn btn-primary">Book your stay</a>
+        <a href="#book" class="btn btn-primary">Book direct &amp; save</a>
+        <a href="#stays" class="btn btn-glass">See the places</a>
       </div>
     </div>
   </div>
@@ -271,9 +343,13 @@ footer .logo{display:block;font-size:22px;color:var(--ink);margin-bottom:6px}
   <div class="wrap">
     <div class="stats-card">
       <div class="stat"><b>4.95★</b><span>Guest rating</span></div>
-      <div class="stat"><b>280+</b><span>Guest reviews</span></div>
+      <button type="button" class="stat stat-btn" id="revToggle" aria-expanded="false" aria-controls="reviews"><b>280+</b><span>Guest reviews <i class="chev">▾</i></span></button>
       <div class="stat"><b>5.0</b><span>Communication</span></div>
       <div class="stat"><b>4 yrs</b><span>Hosting</span></div>
+    </div>
+    <div class="reviews" id="reviews" hidden>
+      <div class="seg" id="revSeg"></div>
+      <div id="revBody"></div>
     </div>
   </div>
 </div>
@@ -316,6 +392,46 @@ footer .logo{display:block;font-size:22px;color:var(--ink);margin-bottom:6px}
 
 
 
+<section id="book" style="padding-top:20px">
+  <div class="wrap book-wrap">
+    <div class="reveal">
+      <div class="kicker">Book direct</div>
+      <h2>Skip the fees, <em>book direct</em></h2>
+      <p class="sub" style="margin-bottom:24px">This calendar stays in sync with Jacob's Airbnb calendar, so the open dates you see are really open.</p>
+      <ol class="steps">
+        <li><i>1</i><div><b>Pick your dates</b><span>Crossed-out dates are already booked.</span></div></li>
+        <li><i>2</i><div><b>Send your request</b><span>It opens as an email to Jacob, ready to send.</span></div></li>
+        <li><i>3</i><div><b>Confirm &amp; pay by e-transfer</b><span>Jacob confirms your dates and sends payment details. No platform fees.</span></div></li>
+      </ol>
+      <div class="sync" id="syncNote"><i></i><span>Checking calendar…</span></div>
+    </div>
+    <div class="reveal">
+      <form id="bf" novalidate>
+        <div class="full"><div class="seg" id="seg"></div></div>
+        <div class="full">
+          <div class="cal-head"><button type="button" id="calPrev" aria-label="Previous month">‹</button><span style="font-size:13px;color:var(--muted)" id="calHint">Tap your check-in date</span><button type="button" id="calNext" aria-label="Next month">›</button></div>
+          <div class="cal-months" id="cal"></div>
+          <div class="legend"><span><i style="background:var(--deep-2)"></i>Your dates</span><span><i style="background:var(--chip);border:1px solid var(--line)"></i>Open</span><span style="text-decoration:line-through">Booked</span></div>
+        </div>
+        <div class="full dates"><div><small>Check-in</small><b id="ciTxt">Add date</b></div><div><small>Check-out</small><b id="coTxt">Add date</b></div></div>
+        <div class="full price" id="price" hidden></div>
+        <div><label for="bname">Your name</label><input id="bname" autocomplete="name" placeholder="First and last"></div>
+        <div><label for="bguests">Guests</label><input id="bguests" type="number" inputmode="numeric" min="1" value="2"></div>
+        <div><label for="bemail">Email</label><input id="bemail" type="email" autocomplete="email" placeholder="you@email.com"></div>
+        <div><label for="bphone">Phone</label><input id="bphone" type="tel" autocomplete="tel" placeholder="709-…"></div>
+        <div class="full"><label for="bnote">Anything else? <span style="font-weight:400;color:var(--muted)">(optional)</span></label><textarea id="bnote" placeholder="Reason for your trip, arrival time, pets, questions…"></textarea></div>
+        <p class="err" id="berr"></p>
+        <div class="full"><button class="btn btn-primary" type="submit" style="width:100%;padding:16px">Send booking request</button></div>
+      </form>
+      <div class="out" id="bout">
+        <strong>Almost done: send this to Jacob</strong>
+        <pre id="bmsg"></pre>
+        <div class="row" id="brow"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <a href="#" class="logo">Jacob's <span style="color:var(--rust)">Stays</span></a>
   Corner Brook, Newfoundland &amp; Labrador · Exact addresses are shared after booking.
@@ -323,7 +439,7 @@ footer .logo{display:block;font-size:22px;color:var(--ink);margin-bottom:6px}
 
 
 
-<div class="sticky" id="sticky"><a href="#stays" class="btn btn-primary">Book your stay</a></div>
+<div class="sticky" id="sticky"><a href="#book" class="btn btn-primary">Check dates &amp; book direct</a></div>
 
 <script>
 
@@ -336,6 +452,17 @@ footer .logo{display:block;font-size:22px;color:var(--ink);margin-bottom:6px}
   apply(saved||(sys?"dark":"light"));
   btn.addEventListener("click",()=>{const t=root.dataset.theme==="dark"?"light":"dark";apply(t);try{localStorage.setItem("theme",t)}catch(_){}});
 })();
+
+/* ---------- DIRECT BOOKING SETTINGS (edit these) ---------- */
+const BOOKING = {
+  email: "jacobkeats50@gmail.com",        // where booking requests go
+  repo:  "W33gie/Jacob-booking",          // GitHub repo that holds availability.json
+  rates: {                                // nightly: null = "Jacob will confirm the price"
+    apt:      { nightly: null, cleaning: 0, minNights: 1 },
+    townsite: { nightly: null, cleaning: 0, minNights: 1 }
+  }
+};
+/* ------------------------------------------------------------ */
 
 const ICON={
   kitchen:'<path d="M6 2v8a2 2 0 0 0 2 2v10M10 2v8M8 2v20M18 2c-2 0-3 3-3 6s1 4 3 4v10"/>',
@@ -351,13 +478,13 @@ const ICON={
 const ico=k=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON[k]}</svg>`;
 
 const PROPS=[
-  {id:"apt",n:"01",name:"The Cozy Apartment",type:"Entire rental unit",rating:"4.95",reviews:274,tag:"Self check-in",
+  {id:"apt",n:"01",name:"The Cozy Apartment",type:"Entire rental unit",rating:"4.95",reviews:274,cats:{Cleanliness:4.9,Accuracy:5.0,"Check-in":5.0,Communication:5.0,Location:4.9,Value:4.9},tag:"Self check-in",
    specs:[["2","guests"],["1","bedroom"],["1","queen bed"],["1","bath"]],
    desc:"A one-bedroom apartment close to Western Memorial Regional Hospital and Apex Medical Centre. Good for short or long stays, with a full kitchen and laundry in the unit.",
    feats:[["kitchen","Full kitchen"],["laundry","Washer & dryer"],["desk","Workspace"],["wifi","Wi-Fi"],["car","Parking for 2"],["leaf","Garden view"]],
    url:"https://www.airbnb.com/rooms/815191033258860680",scene:"apt",
    photos:["355dadc6-e180-4c62-b862-ebdc8a4e1efa","0633e9a1-3b32-4032-9b0f-535a5e0e4faf","bcef245c-b744-497c-8fff-d655918c3eae","101e3c8c-e2e7-4354-aa59-34af8498136c","9eef16a5-32f3-4796-be58-f4c1328cb37f"].map(id=>`https://a0.muscache.com/im/pictures/hosting/Hosting-815191033258860680/original/${id}.jpeg?im_w=1200`)},
-  {id:"townsite",n:"02",name:"Townsite Delight",type:"Heritage home",rating:"5.0",reviews:8,tag:"♥ Guest favourite",
+  {id:"townsite",n:"02",name:"Townsite Delight",type:"Heritage home",rating:"5.0",reviews:8,cats:{Cleanliness:4.9,Accuracy:4.9,"Check-in":5.0,Communication:4.9,Location:4.9,Value:4.8},tag:"♥ Guest favourite",
    specs:[["7","guests"],["4","bedrooms"],["4","beds"],["1","bath"]],
    desc:"A four-bedroom company house from Corner Brook Pulp and Paper's Bowater days, furnished with a mix of antique and modern pieces. It's near the restaurants and pubs on West Street and a short walk from Margaret Bowater Park.",
    feats:[["fire","Deck & BBQ"],["sofa","Den + sofa bed"],["kitchen","Full kitchen"],["laundry","Washer"],["car","Parking for 3"],["tv","TV & Wi-Fi"]],
@@ -424,7 +551,8 @@ PROPS.forEach(p=>{
       <p class="desc">${p.desc}</p>
       <ul class="feat">${p.feats.map(([k,t])=>`<li>${ico(k)}${t}</li>`).join("")}</ul>
       <div class="actions">
-        <a class="btn btn-primary" href="${p.url}" target="_blank" rel="noopener">Book on Airbnb →</a>
+        <a class="btn btn-primary" href="#book" data-pick="${p.id}">Book direct <small style="font-size:12px;font-weight:500;opacity:.85">(save fees)</small></a>
+        <a class="btn btn-line" href="${p.url}" target="_blank" rel="noopener">Book on Airbnb</a>
       </div>
     </div>
   </article>`);
@@ -452,15 +580,191 @@ document.querySelectorAll(".art").forEach(art=>{
   sync();
 });
 
+/* ---------- reviews dropdown (review text lives in reviews.json) ---------- */
+(function(){
+  const btn=document.getElementById("revToggle"), panel=document.getElementById("reviews");
+  const seg=document.getElementById("revSeg"), body=document.getElementById("revBody");
+  let data=null, cur=PROPS[0].id, shown=4;
+  const esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  PROPS.forEach(p=>seg.insertAdjacentHTML("beforeend",`<button type="button" data-p="${p.id}">${p.name}<br><span style="font-weight:400;font-size:12px">★ ${p.rating} · ${p.reviews} reviews</span></button>`));
+  seg.addEventListener("click",e=>{const b=e.target.closest("button");if(b){cur=b.dataset.p;shown=4;draw()}});
+  function draw(){
+    [...seg.children].forEach(b=>b.classList.toggle("on",b.dataset.p===cur));
+    const p=PROPS.find(x=>x.id===cur);
+    const list=((data&&data[cur])||[]).filter(r=>r&&r.text);
+    let h=`<div class="rev-top"><div class="rev-score"><b>${p.rating}</b><span>★ ${p.reviews} reviews on Airbnb</span></div><div class="bars">`;
+    h+=Object.entries(p.cats).map(([k,v])=>`<div class="bar"><span>${k}</span><span class="track"><i style="width:${(v/5)*100}%"></i></span><b>${v.toFixed(1)}</b></div>`).join("");
+    h+=`</div></div>`;
+    if(list.length){
+      h+=`<div class="rev-list">`+list.slice(0,shown).map(r=>`<div class="rev"><div class="rev-h"><span class="av">${esc((r.name||"G")[0].toUpperCase())}</span><div><b>${esc(r.name||"Guest")}</b><small>${esc(r.date||"")}</small></div></div><p>${esc(r.text)}</p></div>`).join("")+`</div>`;
+    }
+    h+=`<div class="rev-more">${list.length>shown?`<button type="button" class="btn btn-line" id="revMore">Show more reviews</button>`:""}<a class="btn btn-deep" href="${p.url}/reviews" target="_blank" rel="noopener">Read all ${p.reviews} reviews on Airbnb →</a></div>`;
+    body.innerHTML=h;
+    const m=document.getElementById("revMore"); if(m) m.addEventListener("click",()=>{shown+=6;draw()});
+  }
+  btn.addEventListener("click",async()=>{
+    const open=panel.hidden; panel.hidden=!open; btn.setAttribute("aria-expanded",open);
+    if(open&&!data){try{const r=await fetch("reviews.json",{cache:"no-store"});data=r.ok?await r.json():{}}catch(_){data={}}}
+    if(open) draw();
+  });
+})();
+
+/* ---------- direct booking calendar ---------- */
+(function(){
+  const D=s=>new Date(s+"T00:00:00Z");
+  const iso=d=>d.toISOString().slice(0,10);
+  const add=(s,n)=>{const d=D(s);d.setUTCDate(d.getUTCDate()+n);return iso(d)};
+  const nightsBetween=(a,b)=>Math.round((D(b)-D(a))/864e5);
+  const now=new Date(), TODAY=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}-${String(now.getDate()).padStart(2,"0")}`;
+  const nice=s=>D(s).toLocaleDateString("en-CA",{weekday:"short",month:"short",day:"numeric",timeZone:"UTC"});
+  const money=n=>"$"+n.toLocaleString("en-CA",{minimumFractionDigits:0,maximumFractionDigits:2});
+
+  let booked={apt:[],townsite:[]}, prop="apt", ci=null, co=null;
+  const first=new Date(Date.UTC(now.getFullYear(),now.getMonth(),1));
+  let offset=0; const MAX_AHEAD=12;
+
+  const seg=document.getElementById("seg"), cal=document.getElementById("cal");
+  const hint=document.getElementById("calHint");
+  PROPS.forEach(p=>seg.insertAdjacentHTML("beforeend",`<button type="button" data-p="${p.id}">${p.name}<br><span style="font-weight:400;font-size:12px">up to ${p.specs[0][0]} guests</span></button>`));
+  const setProp=id=>{prop=id;ci=co=null;[...seg.children].forEach(b=>b.classList.toggle("on",b.dataset.p===id));render()};
+  seg.addEventListener("click",e=>{const b=e.target.closest("button");if(b)setProp(b.dataset.p)});
+  document.querySelectorAll("[data-pick]").forEach(a=>a.addEventListener("click",()=>setProp(a.dataset.pick)));
+
+  const nightBooked=d=>booked[prop].some(r=>r.start<=d&&d<r.end);
+  const rangeFree=(a,b)=>{for(let d=a;d<b;d=add(d,1)) if(nightBooked(d)) return false; return true};
+  const minN=()=>BOOKING.rates[prop].minNights||1;
+
+  function pick(d){
+    if(ci&&!co&&d>ci){
+      if(rangeFree(ci,d)){
+        if(nightsBetween(ci,d)<minN()){hint.textContent=`Minimum stay is ${minN()} nights`;return}
+        co=d;render();return;
+      }
+      if(!nightBooked(d)){ci=d;co=null;render()}
+      else hint.textContent="Those dates include a booked night";
+      return;
+    }
+    if(nightBooked(d)) return;
+    ci=d;co=null;render();
+  }
+
+  function month(y,m){
+    const start=new Date(Date.UTC(y,m,1)), days=new Date(Date.UTC(y,m+1,0)).getUTCDate();
+    const lead=(start.getUTCDay()+6)%7; // Monday first
+    let h=`<div><div class="cal-title">${start.toLocaleDateString("en-CA",{month:"long",year:"numeric",timeZone:"UTC"})}</div><div class="cal-grid">`;
+    h+=["M","T","W","T","F","S","S"].map(x=>`<div class="dow">${x}</div>`).join("");
+    h+="<div></div>".repeat(lead);
+    for(let i=1;i<=days;i++){
+      const d=iso(new Date(Date.UTC(y,m,i)));
+      const past=d<TODAY, isB=nightBooked(d);
+      const coOk=ci&&!co&&d>ci&&rangeFree(ci,d);
+      const cls=["day"];
+      if(isB) cls.push("booked");
+      if(coOk) cls.push("co-ok");
+      if(d===ci||d===co) cls.push("sel");
+      if(ci&&co&&d>ci&&d<co) cls.push("in-range");
+      if(d===TODAY) cls.push("today");
+      const dis=past||(isB&&!coOk);
+      h+=`<button type="button" class="${cls.join(" ")}" data-d="${d}" ${dis?"disabled":""} aria-label="${nice(d)}${isB?", booked":""}">${i}</button>`;
+    }
+    return h+"</div></div>";
+  }
+
+  function render(){
+    const two=window.innerWidth>=980;
+    cal.classList.toggle("two",two);
+    const a=new Date(first);a.setUTCMonth(a.getUTCMonth()+offset);
+    let h=month(a.getUTCFullYear(),a.getUTCMonth());
+    if(two){const b=new Date(a);b.setUTCMonth(b.getUTCMonth()+1);h+=month(b.getUTCFullYear(),b.getUTCMonth())}
+    cal.innerHTML=h;
+    document.getElementById("calPrev").disabled=offset<=0;
+    document.getElementById("calNext").disabled=offset>=MAX_AHEAD;
+    document.getElementById("ciTxt").textContent=ci?nice(ci):"Add date";
+    document.getElementById("coTxt").textContent=co?nice(co):"Add date";
+    hint.textContent=!ci?"Tap your check-in date":!co?"Now tap your check-out date":`${nightsBetween(ci,co)} night${nightsBetween(ci,co)>1?"s":""} selected`;
+    const pr=document.getElementById("price"), r=BOOKING.rates[prop];
+    if(ci&&co){
+      const n=nightsBetween(ci,co);
+      if(r.nightly){
+        const sub=n*r.nightly, tot=sub+(r.cleaning||0);
+        pr.innerHTML=`<div><span>${money(r.nightly)} × ${n} night${n>1?"s":""}</span><span>${money(sub)}</span></div>${r.cleaning?`<div><span>Cleaning fee</span><span>${money(r.cleaning)}</span></div>`:""}<div class="tot"><span>Total</span><span>${money(tot)}</span></div><p>No Airbnb service fee. Jacob will confirm the final total.</p>`;
+      } else pr.innerHTML=`<div class="tot"><span>${n} night${n>1?"s":""}</span><span>Price confirmed by Jacob</span></div><p>Booking direct means no Airbnb service fee.</p>`;
+      pr.hidden=false;
+    } else pr.hidden=true;
+  }
+  cal.addEventListener("click",e=>{const b=e.target.closest(".day");if(b&&!b.disabled)pick(b.dataset.d)});
+  document.getElementById("calPrev").addEventListener("click",()=>{if(offset>0){offset--;render()}});
+  document.getElementById("calNext").addEventListener("click",()=>{if(offset<MAX_AHEAD){offset++;render()}});
+  let rw;window.addEventListener("resize",()=>{clearTimeout(rw);rw=setTimeout(render,150)});
+
+  // load availability (raw GitHub is updated the moment the sync runs; local file as backup)
+  const note=document.getElementById("syncNote");
+  const setNote=(live,txt)=>{note.classList.toggle("live",live);note.querySelector("span").textContent=txt};
+  async function load(){
+    const urls=[`https://raw.githubusercontent.com/${BOOKING.repo}/main/availability.json?t=${Date.now()}`,`availability.json?t=${Date.now()}`];
+    for(const u of urls){
+      try{
+        const r=await fetch(u,{cache:"no-store"}); if(!r.ok) continue;
+        const j=await r.json(); booked={apt:[],townsite:[],...(j.properties||{})};
+        if(j.updated){
+          const mins=Math.max(1,Math.round((Date.now()-new Date(j.updated))/6e4));
+          const ago=mins<60?`${mins} min ago`:mins<1440?`${Math.round(mins/60)} hr ago`:`${Math.round(mins/1440)} days ago`;
+          setNote(true,`Synced with Airbnb · updated ${ago}`);
+        } else setNote(false,"Calendar not connected yet. Jacob will confirm your dates.");
+        render(); return;
+      }catch(_){}
+    }
+    setNote(false,"Couldn't load the calendar. Jacob will confirm your dates.");
+  }
+  setProp("apt"); load();
+
+  // send request
+  document.getElementById("bf").addEventListener("submit",e=>{
+    e.preventDefault();
+    const err=document.getElementById("berr");
+    const name=document.getElementById("bname").value.trim(), email=document.getElementById("bemail").value.trim();
+    const phone=document.getElementById("bphone").value.trim(), g=document.getElementById("bguests").value||"1";
+    const note=document.getElementById("bnote").value.trim();
+    const p=PROPS.find(x=>x.id===prop), max=+p.specs[0][0];
+    let msg="";
+    if(!ci||!co) msg="Pick your check-in and check-out dates on the calendar.";
+    else if(!name) msg="Add your name.";
+    else if(!/^\S+@\S+\.\S+$/.test(email)) msg="Add an email so Jacob can reply.";
+    else if(+g>max) msg=`${p.name} sleeps up to ${max} guests.`;
+    if(msg){err.textContent=msg;err.style.display="block";return}
+    err.style.display="none";
+    const n=nightsBetween(ci,co), r=BOOKING.rates[prop];
+    const total=r.nightly?`\nEstimated total: ${money(n*r.nightly+(r.cleaning||0))}`:"";
+    const body=`Hi Jacob,
+
+I'd like to book ${p.name} directly.
+
+Check-in: ${nice(ci)}
+Check-out: ${nice(co)} (${n} night${n>1?"s":""})
+Guests: ${g}${total}
+
+Name: ${name}
+Email: ${email}${phone?`\nPhone: ${phone}`:""}${note?`\n\n${note}`:""}
+
+Please confirm and send e-transfer details. Thanks!`;
+    document.getElementById("bmsg").textContent=body;
+    const row=document.getElementById("brow");
+    row.innerHTML=`<a class="btn btn-primary" href="mailto:${BOOKING.email}?subject=${encodeURIComponent(`Direct booking request: ${p.name}, ${nice(ci)} to ${nice(co)}`)}&body=${encodeURIComponent(body)}">Email Jacob</a><button type="button" class="btn btn-line" id="bcopy">Copy message</button>`;
+    document.getElementById("bcopy").addEventListener("click",async ev=>{try{await navigator.clipboard.writeText(body);ev.target.textContent="Copied ✓"}catch(_){ev.target.textContent="Select the text to copy"}});
+    row.insertAdjacentHTML("beforeend",`<p style="width:100%;font-size:13px;color:var(--muted);margin-top:4px">If the email button doesn't open, copy the message and send it to ${BOOKING.email}.</p>`);
+    const box=document.getElementById("bout");box.style.display="block";box.scrollIntoView({behavior:"smooth",block:"nearest"});
+  });
+})();
+
 /* reveal on scroll + sticky CTA */
 if("IntersectionObserver" in window){
   const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target)}}),{threshold:.12});
   document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
   const sticky=document.getElementById("sticky");
-  let heroGone=false, cardsIn=false;
-  const upd=()=>sticky.classList.toggle("show",heroGone&&!cardsIn);
+  let heroGone=false, bookIn=false;
+  const upd=()=>sticky.classList.toggle("show",heroGone&&!bookIn);
   new IntersectionObserver(([en])=>{heroGone=!en.isIntersecting;upd()}).observe(document.querySelector(".hero"));
-  new IntersectionObserver(([en])=>{cardsIn=en.isIntersecting;upd()},{threshold:0}).observe(document.getElementById("props"));
+  new IntersectionObserver(([en])=>{bookIn=en.isIntersecting;upd()},{threshold:0}).observe(document.getElementById("book"));
 }else{document.querySelectorAll(".reveal").forEach(el=>el.classList.add("in"))}
 </script>
 </body>
