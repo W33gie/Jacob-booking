@@ -91,7 +91,7 @@ h2{font-family:Fraunces,serif;font-weight:400;font-size:clamp(32px,5.5vw,46px);l
 .art{position:relative;aspect-ratio:16/10;display:block;overflow:hidden;background:var(--surface-2)}
 .gallery{position:absolute;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;z-index:1}
 .gallery::-webkit-scrollbar{display:none}
-.gallery img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;scroll-snap-align:start;cursor:zoom-in;display:block;background:var(--surface-2)}
+.gallery img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;scroll-snap-align:start;cursor:pointer;display:block;background:var(--surface-2)}
 .art .tag,.art .photos,.dots,.gnav{z-index:2}
 .dots{position:absolute;bottom:16px;right:16px;display:flex;gap:5px}
 .dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.55);transition:all .25s}
@@ -259,10 +259,9 @@ footer .logo{display:block;font-size:22px;color:var(--ink);margin-bottom:6px}
     <div class="hero-inner">
       <div class="eyebrow">Corner Brook · Newfoundland</div>
       <h1>Your home base on the <em>west coast.</em></h1>
-      <p class="lead">Two places in Corner Brook, both with great reviews: a cozy apartment near the hospital and a four-bedroom heritage house in Townsite. Book directly with your host.</p>
+      <p class="lead">Two places in Corner Brook, both with great reviews: a cozy apartment near the hospital and a four-bedroom heritage house in Townsite. Pick a place and book it on Airbnb.</p>
       <div class="cta-row">
-        <a href="#book" class="btn btn-primary">Request your dates</a>
-        <a href="#stays" class="btn btn-glass">See the places</a>
+        <a href="#stays" class="btn btn-primary">Book your stay</a>
       </div>
     </div>
   </div>
@@ -313,69 +312,20 @@ footer .logo{display:block;font-size:22px;color:var(--ink);margin-bottom:6px}
   </div>
 </div>
 
-<section id="book" style="padding-top:20px">
-  <div class="wrap book-wrap">
-    <div class="reveal">
-      <div class="kicker">Book direct</div>
-      <h2>Request your <em>dates</em></h2>
-      <p class="sub" style="margin-bottom:24px">Fill in the form and the site writes the message for you. Jacob will get back to you to confirm.</p>
-      <ol class="steps">
-        <li><i>1</i><div><b>Pick a place and dates</b><span>Tell Jacob when you're coming and how many people.</span></div></li>
-        <li><i>2</i><div><b>Send with one tap</b><span>Your request opens as an email to Jacob, ready to send.</span></div></li>
-        <li><i>3</i><div><b>Get confirmed</b><span>Jacob replies with availability and the details.</span></div></li>
-      </ol>
-    </div>
-    <div class="reveal">
-      <form id="f" novalidate>
-        <div class="full"><label for="prop">Property</label><select id="prop"></select></div>
-        <div><label for="name">Your name</label><input id="name" autocomplete="name" placeholder="First and last"></div>
-        <div><label for="guests">Guests</label><input id="guests" type="number" inputmode="numeric" min="1" value="2"></div>
-        <div><label for="in">Check-in</label><input id="in" type="date"></div>
-        <div><label for="out">Check-out</label><input id="out" type="date"></div>
-        <div class="full"><label for="note">Anything else? <span style="font-weight:400;color:var(--muted)">(optional)</span></label><textarea id="note" placeholder="Reason for your trip, arrival time, pets, questions…"></textarea></div>
-        <p class="err" id="err">Please add your name and both dates. Check-out has to be after check-in.</p>
-        <div class="full"><button class="btn btn-primary" type="submit" style="width:100%;padding:16px">Write my request</button></div>
-      </form>
-      <div class="out" id="outBox">
-        <strong>Your message is ready</strong>
-        <pre id="msg"></pre>
-        <div class="row" id="sendRow"></div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section id="contact" style="padding-top:0">
-  <div class="wrap">
-    <div class="contact reveal">
-      <div>
-        <div class="kicker" style="color:var(--gold)">Get in touch</div>
-        <h2>Questions? <em>Just ask.</em></h2>
-        <p class="sub">Message Jacob directly about dates, longer stays, or anything else.</p>
-      </div>
-      <div class="c-list" id="contactList"></div>
-    </div>
-  </div>
-</section>
+
+
 
 <footer>
   <a href="#" class="logo">Jacob's <span style="color:var(--rust)">Stays</span></a>
   Corner Brook, Newfoundland &amp; Labrador · Exact addresses are shared after booking.
 </footer>
 
-<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photos"><div class="lb-top"><span id="lbCount"></span><button type="button" id="lbClose" aria-label="Close">×</button></div><div class="gallery" id="lbGal"></div></div>
 
-<div class="sticky" id="sticky"><a href="#book" class="btn btn-primary">Request your dates</a></div>
+
+<div class="sticky" id="sticky"><a href="#stays" class="btn btn-primary">Book your stay</a></div>
 
 <script>
-/* ---------- EDIT CONTACT INFO HERE ---------- */
-const CONTACT = {
-  name: "Jacob",
-  phone: "",      // e.g. "709-555-1234"
-  email: "jacobkeats50@gmail.com",
-  facebook: ""    // e.g. "https://facebook.com/..."
-};
-/* -------------------------------------------- */
 
 /* dark mode */
 (function(){
@@ -409,7 +359,7 @@ const PROPS=[
    photos:["355dadc6-e180-4c62-b862-ebdc8a4e1efa","0633e9a1-3b32-4032-9b0f-535a5e0e4faf","bcef245c-b744-497c-8fff-d655918c3eae","101e3c8c-e2e7-4354-aa59-34af8498136c","9eef16a5-32f3-4796-be58-f4c1328cb37f"].map(id=>`https://a0.muscache.com/im/pictures/hosting/Hosting-815191033258860680/original/${id}.jpeg?im_w=1200`)},
   {id:"townsite",n:"02",name:"Townsite Delight",type:"Heritage home",rating:"5.0",reviews:8,tag:"♥ Guest favourite",
    specs:[["7","guests"],["4","bedrooms"],["4","beds"],["1","bath"]],
-   desc:"A four-bedroom company house from Corner Brook's paper-mill days, furnished with a mix of antique and modern pieces. It's near the restaurants and pubs on West Street and a short walk from Margaret Bowater Park.",
+   desc:"A four-bedroom company house from Corner Brook Pulp and Paper's Bowater days, furnished with a mix of antique and modern pieces. It's near the restaurants and pubs on West Street and a short walk from Margaret Bowater Park.",
    feats:[["fire","Deck & BBQ"],["sofa","Den + sofa bed"],["kitchen","Full kitchen"],["laundry","Washer"],["car","Parking for 3"],["tv","TV & Wi-Fi"]],
    url:"https://www.airbnb.com/rooms/1746748467627705288",scene:"house",
    photos:["c3371b52-93bb-4d5d-841e-12d00e95dd8c","5ab70713-ce51-453b-b4fb-e51a52a8eeba","bbb9d629-4fb4-4a86-997d-37dca5831c20","bee91be6-128a-4f4e-ab61-d11b939aadf8","6d03f0a6-5ba4-4438-85b6-5d263d5a0897"].map(id=>`https://a0.muscache.com/im/pictures/hosting/Hosting-1746748467627705288/original/${id}.jpeg?im_w=1200`)}
@@ -463,7 +413,7 @@ PROPS.forEach(p=>{
       <button class="gnav prev" type="button" aria-label="Previous photo">‹</button>
       <button class="gnav next" type="button" aria-label="Next photo">›</button>
       <span class="tag">${p.tag}</span>
-      <a class="photos" href="${p.url}" target="_blank" rel="noopener">All photos on Airbnb →</a>
+      <a class="photos" href="${p.url}" target="_blank" rel="noopener">Tap to see it on Airbnb →</a>
       <div class="dots"></div>
       <span class="num">${p.n}</span>
     </div>
@@ -474,37 +424,13 @@ PROPS.forEach(p=>{
       <p class="desc">${p.desc}</p>
       <ul class="feat">${p.feats.map(([k,t])=>`<li>${ico(k)}${t}</li>`).join("")}</ul>
       <div class="actions">
-        <a class="btn btn-deep" href="#book" data-pick="${p.id}">Request dates</a>
-        <a class="btn btn-line" href="${p.url}" target="_blank" rel="noopener">View on Airbnb</a>
+        <a class="btn btn-primary" href="${p.url}" target="_blank" rel="noopener">Book on Airbnb →</a>
       </div>
     </div>
   </article>`);
 });
 
-const sel=document.getElementById("prop");
-PROPS.forEach(p=>sel.insertAdjacentHTML("beforeend",`<option value="${p.id}">${p.name} · up to ${p.specs[0][0]} guests</option>`));
-document.querySelectorAll("[data-pick]").forEach(a=>a.addEventListener("click",()=>{sel.value=a.dataset.pick}));
-
-const today=new Date().toISOString().slice(0,10);
-document.getElementById("in").min=today; document.getElementById("out").min=today;
-document.getElementById("in").addEventListener("change",e=>{document.getElementById("out").min=e.target.value||today});
-
-/* contact list */
-const C_ICON={
-  mail:'<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/>',
-  phone:'<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/>',
-  fb:'<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>',
-  home:'<path d="m3 10 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>'
-};
-const cico=k=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${C_ICON[k]}</svg>`;
-const cl=document.getElementById("contactList");
-const digits=CONTACT.phone.replace(/[^\d+]/g,"");
-if(CONTACT.email) cl.insertAdjacentHTML("beforeend",`<a class="c-item" href="mailto:${CONTACT.email}">${cico("mail")}<div><small>Email</small><b>${CONTACT.email}</b></div></a>`);
-if(CONTACT.phone) cl.insertAdjacentHTML("beforeend",`<a class="c-item" href="tel:${digits}">${cico("phone")}<div><small>Call or text</small><b>${CONTACT.phone}</b></div></a>`);
-if(CONTACT.facebook) cl.insertAdjacentHTML("beforeend",`<a class="c-item" href="${CONTACT.facebook}" target="_blank" rel="noopener">${cico("fb")}<div><small>Facebook</small><b>Message on Facebook</b></div></a>`);
-PROPS.forEach(p=>cl.insertAdjacentHTML("beforeend",`<a class="c-item" href="${p.url}" target="_blank" rel="noopener">${cico("home")}<div><small>Message on Airbnb</small><b>${p.name}</b></div></a>`));
-
-/* photo galleries (fall back to the illustration if photos can't load) */
+/* photo galleries: tap a photo to open the listing on Airbnb */
 document.querySelectorAll(".art").forEach(art=>{
   const gal=art.querySelector(".gallery"), dots=art.querySelector(".dots");
   const sync=()=>{
@@ -518,59 +444,12 @@ document.querySelectorAll(".art").forEach(art=>{
   const upd=()=>[...dots.children].forEach((d,i)=>d.classList.toggle("on",i===idx()));
   gal.querySelectorAll("img").forEach(img=>{
     img.addEventListener("error",()=>{img.remove();sync()});
-    img.addEventListener("click",()=>openLb(art.dataset.id,[...gal.querySelectorAll("img")].indexOf(img)));
+    img.addEventListener("click",()=>{const p=PROPS.find(x=>x.id===art.dataset.id);const l=document.createElement("a");l.href=p.url;l.target="_blank";l.rel="noopener";document.body.appendChild(l);l.click();l.remove()});
   });
   gal.addEventListener("scroll",()=>requestAnimationFrame(upd),{passive:true});
   art.querySelector(".prev").addEventListener("click",()=>gal.scrollBy({left:-gal.clientWidth,behavior:"smooth"}));
   art.querySelector(".next").addEventListener("click",()=>gal.scrollBy({left:gal.clientWidth,behavior:"smooth"}));
   sync();
-});
-const lb=document.getElementById("lb"), lbGal=document.getElementById("lbGal"), lbCount=document.getElementById("lbCount");
-function openLb(id,start){
-  const imgs=[...document.querySelector(`.art[data-id="${id}"] .gallery`).querySelectorAll("img")];
-  lbGal.innerHTML=imgs.map(i=>`<img src="${i.src}" alt="${i.alt}" referrerpolicy="no-referrer">`).join("");
-  lb.classList.add("open"); document.body.style.overflow="hidden";
-  const n=imgs.length, set=()=>{lbCount.textContent=`${Math.round(lbGal.scrollLeft/lbGal.clientWidth)+1} / ${n}`};
-  requestAnimationFrame(()=>{lbGal.scrollLeft=start*lbGal.clientWidth;set()});
-  lbGal.onscroll=()=>requestAnimationFrame(set);
-}
-function closeLb(){lb.classList.remove("open");document.body.style.overflow=""}
-document.getElementById("lbClose").addEventListener("click",closeLb);
-document.addEventListener("keydown",e=>{if(!lb.classList.contains("open"))return;if(e.key==="Escape")closeLb();if(e.key==="ArrowRight")lbGal.scrollBy({left:lbGal.clientWidth,behavior:"smooth"});if(e.key==="ArrowLeft")lbGal.scrollBy({left:-lbGal.clientWidth,behavior:"smooth"})});
-
-/* booking form */
-function fmt(d){return new Date(d+"T12:00").toLocaleDateString("en-CA",{weekday:"short",month:"short",day:"numeric",year:"numeric"})}
-document.getElementById("f").addEventListener("submit",e=>{
-  e.preventDefault();
-  const name=document.getElementById("name").value.trim();
-  const ci=document.getElementById("in").value, co=document.getElementById("out").value;
-  const g=document.getElementById("guests").value||"1";
-  const note=document.getElementById("note").value.trim();
-  const err=document.getElementById("err");
-  if(!name||!ci||!co||co<=ci){err.style.display="block";return}
-  err.style.display="none";
-  const p=PROPS.find(x=>x.id===sel.value);
-  const nights=Math.round((new Date(co)-new Date(ci))/864e5);
-  const msg=`Hi ${CONTACT.name}, I'm ${name} and I'd like to book ${p.name}.
-
-Check-in: ${fmt(ci)}
-Check-out: ${fmt(co)} (${nights} night${nights>1?"s":""})
-Guests: ${g}${note?`
-
-${note}`:""}
-
-Is it available? Thanks!`;
-  document.getElementById("msg").textContent=msg;
-  const row=document.getElementById("sendRow"); row.innerHTML="";
-  const enc=encodeURIComponent(msg);
-  if(CONTACT.email) row.insertAdjacentHTML("beforeend",`<a class="btn btn-primary" href="mailto:${CONTACT.email}?subject=${encodeURIComponent("Booking request – "+p.name)}&body=${enc}">Email Jacob</a>`);
-  if(CONTACT.phone) row.insertAdjacentHTML("beforeend",`<a class="btn btn-deep" href="sms:${digits}?&body=${enc}">Text Jacob</a>`);
-  row.insertAdjacentHTML("beforeend",`<button type="button" class="btn btn-line" id="copy">Copy message</button>`);
-  document.getElementById("copy").addEventListener("click",async ev=>{
-    try{await navigator.clipboard.writeText(msg);ev.target.textContent="Copied ✓"}catch(_){ev.target.textContent="Select the text above to copy"}
-  });
-  const box=document.getElementById("outBox"); box.style.display="block";
-  box.scrollIntoView({behavior:"smooth",block:"nearest"});
 });
 
 /* reveal on scroll + sticky CTA */
@@ -578,10 +457,10 @@ if("IntersectionObserver" in window){
   const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target)}}),{threshold:.12});
   document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
   const sticky=document.getElementById("sticky");
-  let heroGone=false, bookIn=false;
-  const upd=()=>sticky.classList.toggle("show",heroGone&&!bookIn);
+  let heroGone=false, cardsIn=false;
+  const upd=()=>sticky.classList.toggle("show",heroGone&&!cardsIn);
   new IntersectionObserver(([en])=>{heroGone=!en.isIntersecting;upd()}).observe(document.querySelector(".hero"));
-  new IntersectionObserver(([en])=>{bookIn=en.isIntersecting;upd()},{threshold:0}).observe(document.getElementById("book"));
+  new IntersectionObserver(([en])=>{cardsIn=en.isIntersecting;upd()},{threshold:0}).observe(document.getElementById("props"));
 }else{document.querySelectorAll(".reveal").forEach(el=>el.classList.add("in"))}
 </script>
 </body>
